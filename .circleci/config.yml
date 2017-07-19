@@ -4,15 +4,7 @@
 #
 version: 2
 jobs:
-  dependencies:
-    pre:
-      - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-  deployment:
-    npm:
-      tag: /v[0-9]+(\.[0-9]+)*/
-          commands:
-        - npm publish
-  build:
+build:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -43,5 +35,14 @@ jobs:
   test:
     override:
       - "true"
+  dependencies:
+    pre:
+      - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+  deployment:
+    npm:
+      tag: /v[0-9]+(\.[0-9]+)*/
+          commands:
+        - npm publish
+
 
 
