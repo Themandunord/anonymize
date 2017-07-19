@@ -28,3 +28,6 @@ Temporary Items
 .apdisk
 
 .idea
+
+node_modules
+npm-*
