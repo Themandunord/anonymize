@@ -1,12 +1,16 @@
 {
-  "name": "anonymize-personal-data",
-  "version": "1.0.5",
+  "name": "sensitive-anonymizer",
+  "version": "0.0.1",
   "description": "",
   "main": "anonymize.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "pierre-loic.doulcet@axa-tech.com",
+  "contributors": [{
+    "name": "Lespagnol Rémy",
+    "email": "remy.lespagnol@gmail.com"
+  }],
   "license": "ISC",
   "dependencies": {
     "diacritics": "^1.3.0"
