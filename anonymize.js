@@ -1,4 +1,5 @@
 var fs = require('fs');
+var removeDiacritics = require('diacritics').remove;
 
 var DICTIONARIES = {};
 
@@ -16,8 +17,10 @@ function removePersonalData(text, language) {
         if (rule.type == 'list') {
             for (var j = 0; j < rule.data.length; ++j) {
                 var text2 = text.toLowerCase().replace(/[\ \.\,\?\;\!\)\(]/g, " ") + " ";
-                text2 = text.replace(/[à â]/g, "a").replace(/ç/g, "c").replace(/[è é ê]/g, "e")
-                    .replace(/î/g, "i").replace(/ô/g, "o").replace(/[ù û]/g, 'u');
+
+                // Use diacritics module to remove specials characters and accents
+                text2 = removeDiacritics(text2);
+
                 while (text2.indexOf(" " + rule.data[j] + " ") > -1) {
                     var start = text2.indexOf(" " + rule.data[j] + " ");
                     var len = rule.data[j].length;
@@ -73,7 +76,7 @@ module.exports = {
 }
 
 function laodDictionaries() {
-    var languages = fs.readdirSync(__dirname + "/dictionary");
+    var languages = fs.readdirSync(__dirname + "/dictionary/");
 
     for (var i = 0; i < languages.length; ++i) {
         var dictionary = [];
